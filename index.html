@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech-CodeCraft | Web Development</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #000000;
+            --secondary: #2d2d2d;
+            --dark: #000000;
+            --light-bg: #f4f4f5;
+            --light: #ffffff;
+            --gray: #5a5a5a;
+            --card-bg: #ffffff;
+            --accent: #000000;
+            --whatsapp: #25D366;
+            --email: #000000;
+            --section-bg: #f9f9f9;
+            --border-light: #eaeaea;
+            --shadow-sm: 0 8px 20px -6px rgba(0,0,0,0.08);
+            --shadow-hover: 0 20px 30px -10px rgba(0,0,0,0.15);
+            --radius-md: 12px;
+            --radius-lg: 20px;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.5;
+            color: var(--dark);
+            background-color: var(--light-bg);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--dark);
+            letter-spacing: -0.02em;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            color: var(--gray);
+            font-weight: 400;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--light);
+            padding: 12px 30px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.25s ease;
+            border: 2px solid var(--primary);
+            letter-spacing: 0.3px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary);
+            border-color: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 20px -10px rgba(0,0,0,0.2);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: var(--light);
+        }
+        
+        section {
+            padding: 90px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.8rem;
+            color: var(--dark);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1.2rem;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90px;
+            height: 4px;
+            background-color: var(--primary);
+            border-radius: 4px;
+        }
+        
+        .section-title p {
+            color: var(--gray);
+            font-size: 1.15rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: var(--dark);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            padding: 18px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: var(--light);
+            text-decoration: none;
+            font-family: 'Space Grotesk', sans-serif;
+            letter-spacing: -0.5px;
+        }
+        
+        .logo span {
+            color: #c0c0c0;
+            font-weight: 500;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--light);
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.2s;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--light);
+            transition: width 0.25s;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--light);
+            cursor: pointer;
+        }
+        
+        /* Hero */
+        .hero {
+            padding-top: 170px;
+            background-color: var(--section-bg);
+            position: relative;
+        }
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+        
+        .hero-text {
+            flex: 1;
+            min-width: 320px;
+        }
+        
+        .hero-text h1 {
+            font-size: 3.6rem;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            letter-spacing: -0.02em;
+        }
+        
+        .hero-text p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 35px;
+            max-width: 520px;
+        }
+        
+        .hero-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+        
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-hover);
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+        
+        /* Projects */
+        .projects {
+            background-color: var(--light-bg);
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s cubic-bezier(0.2,0,0,1);
+            border: 1px solid var(--border-light);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .project-img {
+            height: 220px;
+            overflow: hidden;
+        }
+        
+        .project-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s;
+        }
+        
+        .project-card:hover .project-img img {
+            transform: scale(1.07);
+        }
+        
+        .project-content {
+            padding: 25px 20px 25px;
+        }
+        
+        .project-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 6px;
+        }
+        
+        .project-content p {
+            color: var(--gray);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+        
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 20px 0 10px;
+        }
+        
+        .project-tags span {
+            background-color: #f0f0f0;
+            color: var(--dark);
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            border: 1px solid #ddd;
+        }
+        
+        /* Team */
+        .team {
+            background-color: var(--section-bg);
+        }
+        
+        .team-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+        }
+        
+        .team-member {
+            background-color: var(--card-bg);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            max-width: 350px;
+            transition: all 0.3s;
+            border: 1px solid var(--border-light);
+            flex: 1 1 280px;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .member-img {
+            height: 270px;
+            overflow: hidden;
+        }
+        
+        .member-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .team-member:hover .member-img img {
+            transform: scale(1.05);
+        }
+        
+        .member-info {
+            padding: 25px 20px 30px;
+            text-align: center;
+        }
+        
+        .member-info h3 {
+            font-size: 1.7rem;
+            margin-bottom: 5px;
+        }
+        
+        .member-info .role {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: block;
+            font-size: 1rem;
+            letter-spacing: 0.3px;
+        }
+        
+        .member-skills {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 18px;
+        }
+        
+        .member-skills span {
+            background-color: #f2f2f2;
+            color: var(--dark);
+            padding: 6px 16px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            border: 1px solid #dbdbdb;
+        }
+        
+        /* Testimonials (enhanced) */
+        .testimonials {
+            background-color: var(--light-bg);
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background-color: var(--card-bg);
+            border-radius: var(--radius-lg);
+            padding: 35px 30px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s;
+            border: 1px solid var(--border-light);
+            position: relative;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .testimonial-card .client-name {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .testimonial-card .client-name::before {
+            content: "“";
+            font-size: 3rem;
+            font-family: serif;
+            color: var(--dark);
+            opacity: 0.2;
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-weight: 700;
+        }
+        
+        .testimonial-card .feedback-text {
+            color: var(--gray);
+            font-size: 1rem;
+            margin-bottom: 25px;
+            line-height: 1.6;
+            font-style: normal;
+        }
+        
+        .testimonial-card .stars {
+            color: #000;
+            font-size: 1.25rem;
+            letter-spacing: 3px;
+        }
+        
+        /* Packages (elevated) */
+        .packages {
+            background-color: var(--section-bg);
+        }
+        
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            align-items: stretch;
+        }
+        
+        .package-card {
+            background-color: var(--card-bg);
+            border-radius: 28px;
+            padding: 40px 30px 45px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+            text-align: center;
+            border: 1px solid var(--border-light);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .package-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .package-card.featured {
+            background: linear-gradient(145deg, #ffffff, #f8f8f8);
+            border: 2px solid var(--dark);
+            transform: scale(1.03);
+            box-shadow: 0 20px 30px -10px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        
+        .package-card.featured::before {
+            content: "✨ MOST POPULAR";
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--dark);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            padding: 6px 18px;
+            border-radius: 60px;
+            white-space: nowrap;
+        }
+        
+        .package-card.featured:hover {
+            transform: scale(1.03) translateY(-8px);
+        }
+        
+        .package-name {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .package-desc {
+            color: var(--gray);
+            font-size: 0.95rem;
+            margin-bottom: 30px;
+            line-height: 1.5;
+            padding: 0 10px;
+        }
+        
+        .package-features {
+            list-style: none;
+            margin-bottom: 35px;
+            flex-grow: 1;
+            text-align: left;
+            padding-left: 15px;
+        }
+        
+        .package-features li {
+            color: var(--gray);
+            padding: 10px 0 10px 28px;
+            border-bottom: 1px dashed #eee;
+            font-size: 0.95rem;
+            position: relative;
+        }
+        
+        .package-features li::before {
+            content: "✓";
+            color: var(--dark);
+            font-weight: 700;
+            position: absolute;
+            left: 0;
+        }
+        
+        .package-price {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin: 20px 0 25px;
+        }
+        
+        .package-price span {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: var(--gray);
+        }
+        
+        .package-card .btn {
+            width: 100%;
+            max-width: 220px;
+            margin: 0 auto;
+        }
+        
+        /* Feedback */
+        .feedback {
+            background-color: var(--light-bg);
+        }
+        
+        .feedback-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+        
+        .feedback-card {
+            flex: 1 1 350px;
+            background: var(--card-bg);
+            border-radius: 32px;
+            padding: 50px 35px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s;
+            border: 1px solid var(--border-light);
+        }
+        
+        .feedback-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .feedback-icon {
+            font-size: 4.2rem;
+            margin-bottom: 25px;
+        }
+        
+        .whatsapp-icon {
+            color: var(--whatsapp);
+        }
+        
+        .feedback-card h3 {
+            font-size: 1.8rem;
+        }
+        
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 1.2rem;
+            margin: 30px 0 20px;
+            background: #f5f5f5;
+            padding: 12px 20px;
+            border-radius: 60px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background-color: var(--primary);
+            color: var(--light);
+            padding: 15px 35px;
+            border-radius: 60px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.25s;
+            border: 2px solid var(--primary);
+            font-size: 1rem;
+        }
+        
+        .whatsapp-link {
+            background-color: var(--whatsapp);
+            border-color: var(--whatsapp);
+        }
+        
+        .whatsapp-link:hover {
+            background-color: #1da85c;
+            border-color: #1da85c;
+        }
+        
+        .contact-link:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 20px -8px rgba(0,0,0,0.2);
+        }
+        
+        .float-whatsapp {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 64px;
+            height: 64px;
+            background-color: var(--whatsapp);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 2.2rem;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+            z-index: 999;
+            transition: all 0.25s;
+        }
+        
+        .float-whatsapp:hover {
+            transform: scale(1.15) rotate(3deg);
+            box-shadow: 0 12px 28px rgba(37, 211, 102, 0.45);
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: var(--light);
+            padding: 70px 0 30px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-about {
+            flex: 2;
+            min-width: 280px;
+        }
+        
+        .footer-about .logo {
+            color: var(--light);
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        
+        .footer-about p {
+            color: #b0b0b0;
+            max-width: 360px;
+        }
+        
+        .footer-links, .footer-social {
+            flex: 1;
+            min-width: 170px;
+        }
+        
+        .footer-links h3, .footer-social h3 {
+            color: var(--light);
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .footer-links h3::after, .footer-social h3::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 45px;
+            height: 3px;
+            background-color: var(--light);
+            border-radius: 3px;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links ul li {
+            margin-bottom: 14px;
+        }
+        
+        .footer-links ul li a {
+            color: #b0b0b0;
+            text-decoration: none;
+            transition: color 0.2s, padding-left 0.2s;
+        }
+        
+        .footer-links ul li a:hover {
+            color: var(--light);
+            padding-left: 5px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 46px;
+            height: 46px;
+            background-color: #2a2a2a;
+            color: var(--light);
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.25s;
+            font-size: 1.4rem;
+        }
+        
+        .social-icons a:hover {
+            background-color: #444;
+            transform: translateY(-6px);
+        }
+        
+        .footer-contact p {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+            color: #b0b0b0;
+        }
+        
+        .footer-contact i {
+            color: var(--whatsapp);
+            font-size: 1.3rem;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 35px;
+            border-top: 1px solid #2a2a2a;
+            color: #888;
+            font-size: 0.95rem;
+        }
+        
+        @media (max-width: 992px) {
+            .hero-text h1 { font-size: 3rem; }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn { display: block; }
+            nav ul {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                flex-direction: column;
+                background-color: var(--dark);
+                text-align: center;
+                padding: 30px 0;
+                gap: 1.5rem;
+                transition: left 0.3s ease;
+                box-shadow: 0 20px 30px rgba(0,0,0,0.2);
+            }
+            nav ul.active { left: 0; }
+            .hero-text h1 { font-size: 2.6rem; }
+            .section-title h2 { font-size: 2.2rem; }
+            .package-card.featured { transform: scale(1); }
+            .package-card.featured:hover { transform: translateY(-8px); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">Tech-<span>CodeCraft</span></a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#feedback">Feedback</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Tech-CodeCraft — Where Code Meets Creativity</h1>
+                    <p>Web Solutions Agency Custom Websites & Digital Services DM for Projects 🚀</p>
+                    <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                        <a href="#projects" class="btn">View Our Projects</a>
+                        <a href="#feedback" class="btn btn-outline">Give Feedback</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="1.jpg.jpeg" alt="Software Development">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="projects" id="projects">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Projects</h2>
+                <p>Check out some of our recent software development projects</p>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-img"><img src="2.jpg" alt="Personal Website"></div>
+                    <div class="project-content">
+                        <h3>Personal Website</h3><p>Marwa Haimoun | Graphic Designer</p>
+                        <a href="https://codecraftdigital11-hue.github.io/marwahaimoun.github.io/" class="btn" target="_blank" style="margin-top: 10px;">View Website</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img"><img src="2.jpg" alt="Personal Website"></div>
+                    <div class="project-content">
+                        <h3>Personal Website</h3><p>Shahd Alkahteeb | Graphic Designer</p>
+                        <a href="https://codecraftdigital11-hue.github.io/shahdalkahteeb.github.io/" class="btn" target="_blank" style="margin-top: 10px;">View Website</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img"><img src="2.jpg" alt="Personal Website"></div>
+                    <div class="project-content">
+                        <h3>Personal Website</h3><p>Aghyad Shehady | Graphic Designer</p>
+                        <a href="https://codecraftdigital11-hue.github.io/aghyadshehady.github.io/" class="btn" target="_blank" style="margin-top: 10px;">View Website</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img"><img src="2.jpg" alt="Personal Website"></div>
+                    <div class="project-content">
+                        <h3>Personal Website</h3><p>Ward Ebrahim | Graphic Designer</p>
+                        <a href="https://codecraftdigital11-hue.github.io/wardebrahim.github.io/" class="btn" target="_blank" style="margin-top: 10px;">View Website</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img"><img src="2.jpg" alt="Personal Website"></div>
+                    <div class="project-content">
+                        <h3>Personal Website</h3><p>Hashtag Faten | Graphic Designer</p>
+                        <a href="https://codecraftdigital11-hue.github.io/hashtagfaten.github.io/" class="btn" target="_blank" style="margin-top: 10px;">View Website</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img"><img src="2.jpg" alt="Personal Website"></div>
+                    <div class="project-content">
+                        <h3>Personal Website</h3><p>Ahmad Sosy | Graphic Designer</p>
+                        <a href="https://codecraftdigital11-hue.github.io/ahmadsosy.github.io/" class="btn" target="_blank" style="margin-top: 10px;">View Website</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="team" id="team">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Development Team</h2>
+                <p>Meet our talented developers who bring ideas to life</p>
+            </div>
+            <div class="team-container">
+                <div class="team-member">
+                    <div class="member-img"><img src="Rabee.jpg" alt="Front-end Developer"></div>
+                    <div class="member-info"><h3>Rabee Rkab</h3><span class="role">Owner & CEO Founder</span></div>
+                </div>
+                <div class="team-member">
+                    <div class="member-img"><img src="Jubaer.jpg" alt="Back-end Developer"></div>
+                    <div class="member-info"><h3>Jubaer Morad</h3><span class="role">Back-end Developer</span><div class="member-skills"><span>C#</span><span>ASP.NET</span><span>Database</span></div></div>
+                </div>
+                <div class="team-member">
+                    <div class="member-img"><img src="محمد.jpeg" alt="Back-end Developer"></div>
+                    <div class="member-info"><h3>Mohammad Naef</h3><span class="role">Back-end Developer</span><div class="member-skills"><span>C#</span><span>ASP.NET</span><span>Database</span></div></div>
+                </div>
+                <div class="team-member">
+                    <div class="member-img"><img src="علاء بركات.jpeg" alt="Back-end Developer"></div>
+                    <div class="member-info"><h3>Alaa Barakat</h3><span class="role">Front-End Developer</span><div class="member-skills"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Tailwind</span><span>Node.JS</span></div></div>
+                </div>
+                <div class="team-member">
+                    <div class="member-img"><img src="دعاء.jpeg" alt="Back-end Developer"></div>
+                    <div class="member-info"><h3>Doaa Zouiter</h3><span class="role">Front-End Developer</span><div class="member-skills"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>React.JS</span></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-title"><h2>Client Testimonials</h2><p>What our clients say about working with us</p></div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card"><div class="client-name">Marwa Haimoun</div><div class="feedback-text">شكر كبير لشركة Tech-CodeCraft على الشغل الرائع بتصميم موقعي الخاص , احتراف وذوق والتزام وتعامل راق من البداية للنهاية , ممتنة جدا لهذه التجربة الجميلة. انص بالتعامل معهم بكل ثقة</div><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div>
+                <div class="testimonial-card"><div class="client-name">Hashtag Faten</div><div class="feedback-text">الشكر كلو الك والله ماقصرت وابدعت وعنجد كثسسر كنت ضايعة بخصوص هالموضوع وانت جيت رتبتلي كل شي والله عاجزة عن شكرك</div><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div>
+                <div class="testimonial-card"><div class="client-name">Ahmad Sosy</div><div class="feedback-text">الله يعطيك الف عافية والله شي كثير مرتب كنت كثير متلخبط بترتيب هيك امر وحضرتك رتبتن بطريقة احترافية كل الشكر الك</div><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div>
+                <div class="testimonial-card"><div class="client-name">Aghyad Shehady</div><div class="feedback-text">تقييمي للخدمة بشكل عام 5 نجوم بدون نقاش .... سرعة وتفاني واستجابة سريعة وتجربة مستخدم سلسة ومرضية من دون اخطاء برمجية او تعقيدات </div><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div>
+                <div class="testimonial-card"><div class="client-name">Ward Ebrahim</div><div class="feedback-text">ممتاز كثير حلو شكرا الك كثير وكنت سعيد بالتعامل معك الله يعطيك العافية</div><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div>
+                <div class="testimonial-card"><div class="client-name">Shahd Alkahteeb</div><div class="feedback-text">بيجننننن يعني والله شو ماحكا الواحد يعجز اللسان عن التعبير الله يعطيك الف عافية يا اخي وشكرا كتير لجهودك وبعتذر عن اي تعب بخصوص التعديلات بس والله طلع خرااافي لو في شي اوفى من كلمات الشكر والله لكنت قلتا ربي يبارك بجهودك وتعبك ويعطيك الف الف الف عافية </div><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="packages" id="packages">
+        <div class="container">
+            <div class="section-title"><h2>Our Packages</h2><p>Choose the perfect plan for your next project</p></div>
+            <div class="packages-grid">
+                <div class="package-card"><div class="package-name">Starter Package</div><div class="package-desc">Individuals – Small Businesses – New Accounts</div><ul class="package-features"><li>Single-page website (landing page)</li><li>Professional, responsive design</li><li>Services section + About Us + Contact Us</li><li>WhatsApp + Social Media integration</li><li>Basic speed optimization</li><li>Free hosting for one month</li><li>Delivery within 5 days</li></ul><div class="package-price">99$ – 149$ <span>one-time</span></div><a href="#feedback" class="btn btn-outline">Contact Us</a></div>
+                <div class="package-card featured"><div class="package-name">Business Package</div><div class="package-desc">Companies – Offices – Clinics – Institutes</div><ul class="package-features"><li>4-6 page website</li><li>Professional UI/UX design</li><li>Simple control panel</li><li>Detailed services section</li><li>Professional contact form</li><li>Basic SEO optimization</li><li>Basic security</li><li>Google Maps integration</li><li>2 months hosting</li><li>30 days technical support</li></ul><div class="package-price">250$ – 400$ <span>one-time</span></div><a href="#feedback" class="btn">Most Popular</a></div>
+                <div class="package-card"><div class="package-name">Premium Package</div><div class="package-desc">Large companies – Brands – Serious projects</div><ul class="package-features"><li>Complete custom website design</li><li>Unlimited pages</li><li>E-commerce store (if required)</li><li>Advanced control panel</li><li>Professional SEO</li><li>Booking/order system</li><li>High speed and performance</li><li>Advanced security</li><li>3-month hosting</li><li>60 days technical support</li><li>Strategic consultation session</li></ul><div class="package-price">600$ – 1200$ <span>custom quote</span></div><a href="#feedback" class="btn btn-outline">Contact Us</a></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="feedback" id="feedback">
+        <div class="container">
+            <div class="section-title"><h2>Share Your Feedback</h2><p>We value your opinion. Choose your preferred way to share feedback with us.</p></div>
+            <div class="feedback-options">
+                <div class="feedback-card"><div class="feedback-icon whatsapp-icon"><i class="fab fa-whatsapp"></i></div><h3>Contact via WhatsApp</h3><p>Send us a direct message on WhatsApp for quick responses and instant feedback.</p><div class="contact-detail"><i class="fab fa-whatsapp"></i><span>+963 934 748 304</span></div><a href="https://wa.me/message/34344BK7TLOAJ1" class="contact-link whatsapp-link" target="_blank"><i class="fab fa-whatsapp"></i> Send WhatsApp Message</a></div>
+            </div>
+        </div>
+    </section>
+
+    <a href="https://wa.me/message/34344BK7TLOAJ1" class="float-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about"><a href="#" class="logo">Tech-<span>CodeCraft</span></a><p>Web Solutions Agency Custom Websites & Digital Services DM for Projects 🚀</p></div>
+                <div class="footer-links"><h3>Quick Links</h3><ul><li><a href="#home">Home</a></li><li><a href="#projects">Projects</a></li><li><a href="#team">Our Team</a></li><li><a href="#feedback">Feedback</a></li><li><a href="#testimonials">Testimonials</a></li><li><a href="#packages">Packages</a></li></ul></div>
+                <div class="footer-social"><h3>Contact Info</h3><div class="footer-contact"><p><i class="fab fa-whatsapp"></i><span>WhatsApp: +963 934 748 304</span></p><p><i class="fas fa-envelope"></i><span>Email: techcodecraft11@gmail.com</span></p></div><h3 style="margin-top:30px;">Follow Us</h3><div class="social-icons"><a href="https://www.linkedin.com/company/codecraft-digital1/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://www.instagram.com/codecraftdigital1?igsh=MWxvaDZmODdoOGtkeA==" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a></div></div>
+            </div>
+            <div class="copyright"><p>&copy; 2025 Tech-CodeCraft Solutions. All rights reserved.</p></div>
+        </div>
+    </footer>
+
+    <script>
+        const mobileBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        mobileBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileBtn.innerHTML = navMenu.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        document.querySelectorAll('nav ul li a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                mobileBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const id = this.getAttribute('href');
+                if(id === '#') return;
+                const el = document.querySelector(id);
+                if(el) window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' });
+            });
+        });
+        window.addEventListener('scroll', () => {
+            document.querySelector('header').style.boxShadow = window.scrollY > 50 ? '0 6px 20px rgba(0,0,0,0.12)' : '0 4px 12px rgba(0,0,0,0.05)';
+        });
+    </script>
+</body>
+</html>
